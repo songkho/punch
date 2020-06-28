@@ -9,6 +9,7 @@ import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
 
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     val eventListener : SensorEventListener = object : SensorEventListener{
         override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-            TODO("Not yet implemented")
+
         }
 
         override fun onSensorChanged(event: SensorEvent?) {
@@ -72,7 +73,6 @@ class MainActivity : AppCompatActivity() {
 
                 }
            }
-            TODO("Not yet implemented")
        }
     }
 
@@ -101,7 +101,11 @@ class MainActivity : AppCompatActivity() {
             eventListener,
             sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION),
             SensorManager.SENSOR_DELAY_NORMAL
+
+
         )
+
+        imageView.startAnimation(AnimationUtils.loadAnimation(this@MainActivity, R.anim.rotate))
     }
 
     //펀치력 측정이 완료된 경우 처리 함수
